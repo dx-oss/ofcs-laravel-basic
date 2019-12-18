@@ -1,0 +1,18 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+configuration:
+ templates:
+  - name: ofcs
+    source: https://github.com/dx-oss/ofc-templates
+functions:
+  laravel-basic-secrets:
+    lang: ofcs
+    handler: ./
+    image: laravel-basic-secrets:v0.0.1
+    readonly_root_filesystem: true
+    secrets:
+      - laravel-basic-dotenv-dev
+    environment:
+      debug: false
